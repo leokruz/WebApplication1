@@ -1,0 +1,101 @@
+﻿@model WebApplication1.Models.LoginModel
+@{
+    ViewBag.Title = "Cadastro de Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    
+<div class="form-horizontal">
+    <h4>Login</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h4>Dados Cadastrais</h4>
+    <hr />
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Cliente.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Cliente.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cliente.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Cliente.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Cliente.DataNascimento, new { htmlAttributes = new { @class = "form-control data" } })
+            @Html.ValidationMessageFor(model => model.Cliente.DataNascimento, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.Cliente.Sexo, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-2">
+            @Html.DropDownListFor(m => m.Cliente.Sexo, new List<SelectListItem>
+                            { new SelectListItem{Text="Masculino", Value="M"},
+                             new SelectListItem{Text="Feminino", Value="F"},
+                             new SelectListItem{Text="3", Value="3"}},
+                             "Informe o Sexo", new { @class = "custom-select" })
+            @Html.ValidationMessageFor(model => model.Cliente.Sexo, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.Cliente.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Cliente.Telefone, new { htmlAttributes = new { @class = "form-control fone" } })
+            @Html.ValidationMessageFor(model => model.Cliente.Telefone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Cliente.Cpf, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Cliente.Cpf, new { htmlAttributes = new { @class = "form-control cpf" } })
+            @Html.ValidationMessageFor(model => model.Cliente.Cpf, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Cliente.Endereco, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Cliente.Endereco, new { htmlAttributes = new { @class = "form-control cpf" } })
+            @Html.ValidationMessageFor(model => model.Cliente.Cpf, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+   
+    <hr /><
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.mask.js"></script>
+    <script type="text/javascript">$(function () {
+            if ($("[id$='DtNascimento']").val().indexOf("01/01/0001") >= 0) {
+                $("[id$='DtNascimento']").val("");
+            }
+
+            if ($("[id$='Numero']").val() == "0") {
+                $("[id$='Numero']").val("");
+            }
+
+            $(".data").mask("00/00/0000");
+            $(".fone").mask("(00) 00000-0000");
+            $(".cpf").mask("000.000.000-00");
+            $(".cep").mask("00000-000");
+        });</script>
+}

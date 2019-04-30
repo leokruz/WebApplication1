@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Loja Dropshipping - TCC";
+}
+
+@if (string.IsNullOrEmpty(ViewBag.NomePesquisa))
+{
+    <div class="jumbotron">
+        <div class="container">
+            <h3 class="display-3">Tutoria TCC</h3>
+            <p>Loja Dropshipping</p>
+        </div>
+    </div>
+}
+<div class="container">
+
+    <div class="row">
+        @{
+            var model = ViewData["Produtos"] as List<WebApplication1.Models.ProdutoModel>;
+            foreach (var item in model)
+            {
+                var urlImagem = Url.Content("~/Content/imagens/" + item.ImgProduto);
+                <div class="col-md-4">
+                    <img src="@urlImagem" alt="@item.Nome" width="150" height="150" />
+                    <h4>@item.Nome</h4>
+                    <h5>@String.Format("{0:C}", item.ValorVenda)</h5>
+                    <p>
+                        @Html.ActionLink("Comprar", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary btn-load" })
+                        @*@Html.ActionLink("Comprar", "Details", "Controller",
+                              new { style = "background-image:url('~/Content/Imagens/comprar.png')" },null)
+
+                            <button type="button" onclick="location.href='@Html.ActionLink("Quero comprar!", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary btn-load" })">
+                                <img alt="Comprar" title="Comprar" src="~/Content/Imagens/comprar.png">
+                            </button>*@
+                    </p>
+                    <br />
+                </div>
+            }
+        }
+    </div>
+</div>

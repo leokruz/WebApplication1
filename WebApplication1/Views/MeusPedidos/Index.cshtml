@@ -1,0 +1,96 @@
+﻿@model WebApplication1.Models.MeusPedidosModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-primary" role="alert">
+    Meus Pedidos
+</div>
+
+@if (Model.Pedidos.Count == 0)
+{
+    <p>Nenhum pedido realizado.</p>
+}
+
+@{
+    var login = (WebApplication1.Models.LoginModel)Session["Login"];
+    foreach (var pedido in Model.Pedidos)
+    {
+        var endereco = pedido.Endereco != null ? pedido.Endereco.ObterEndereco() : "";
+        
+        <div class="card">
+            <div class="card-header">
+                <strong>Pedido: @WebApplication1.Helpers.Funcoes.ObterCodigoPedidoCliente(pedido.IdPedido, login.Cliente.Nome, login.Cliente.Sobrenome) - @pedido.DtAtualizacao</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        Endereço de Entrega: @endereco
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        Forma de pagamento: @WebApplication1.Util.Utils.ObterFormaDePagamento(pedido.IdFormaPagamento)
+                    </div>                   
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <text>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="produto">Item</th>
+                                        <th class="preco">Valor</th>
+                                        <th class="preco">Total do item</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int i = 0;
+                                        foreach (var item in pedido.Itens)
+                                        {
+
+                                            double total = Math.Round(item.ValorFinal, 2);
+
+                                            <tr>
+                                                <td>@item.NomeProduto</td>
+                                                <td>@String.Format("{0:C}", item.ValorFinal)</td>
+                                                <td>@String.Format("{0:C}", total)</td>
+                                            </tr>
+
+                                            i++;
+                                        }
+                                        <tr>
+                                            <td colspan="2">&nbsp;</td>
+                                            <td>Total: @String.Format("{0:C}", pedido.Itens.Sum(p => p.ValorFinal))</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </text>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    @{
+                        foreach (var status in pedido.StatusPedido)
+                        {
+                            <div class="col-md-3 text-center">
+                                <p class="text-success">
+                                    @WebApplication1.Util.Utils.ObterStatusPedido(status.DescStatus)
+                                </p>
+                                <p class="text-info">
+                                    @status.DataInclusao
+                                </p>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+}

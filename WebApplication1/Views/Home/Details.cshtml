@@ -1,0 +1,35 @@
+﻿@model WebApplication1.Models.ProdutoModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.IdFornecedor)
+    @Html.HiddenFor(model => model.Nome)
+    @Html.HiddenFor(model => model.Descricao)
+    @Html.HiddenFor(model => model.ValorFornecedor)
+    var urlImagem = Url.Content("~/Content/Imagens/" + Model.Id + ".jpg");
+
+    <div class="card" style="width: 18rem;">
+        <img src="@urlImagem" alt="@Model.Nome" style="margin: 0 auto" width="150" height="150">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Nome</h5>
+            <p class="card-text">@Model.Descricao
+            <p>@String.Format("{0:C}", Model.ValorVenda)</p>
+            @Html.DropDownListFor(m => m.Quantidade, new List<SelectListItem>
+                                { new SelectListItem{Text="1", Value="1"},
+                                 new SelectListItem{Text="2", Value="2"},
+                                 new SelectListItem{Text="3", Value="3"}},
+                                 "Selecione a quantidade", new { @class = "custom-select" })
+            <br />
+            <br />
+            <input type="submit" value="Adicionar ao Carrinho" class="btn btn-primary btn-load" />
+        </div>
+    </div>
+    <br />
+    <p class="text-danger">
+        @ViewBag.Mensagem
+    </p>
+}

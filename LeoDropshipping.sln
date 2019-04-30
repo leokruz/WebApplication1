@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeoFrontEnd", "WebApplication1\LeoFrontEnd.csproj", "{D3C28E61-02A6-4C8A-9257-AE18FE1BEF56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeoWebApi", "LeoWebApi\LeoWebApi.csproj", "{33968BB8-7D5D-40AC-A720-9039C0F99A4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateDb", "CreateDb\CreateDb.csproj", "{8C2F0DBC-0B6D-442A-8942-2644AD2C1297}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3C28E61-02A6-4C8A-9257-AE18FE1BEF56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C28E61-02A6-4C8A-9257-AE18FE1BEF56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C28E61-02A6-4C8A-9257-AE18FE1BEF56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C28E61-02A6-4C8A-9257-AE18FE1BEF56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33968BB8-7D5D-40AC-A720-9039C0F99A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33968BB8-7D5D-40AC-A720-9039C0F99A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33968BB8-7D5D-40AC-A720-9039C0F99A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33968BB8-7D5D-40AC-A720-9039C0F99A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C2F0DBC-0B6D-442A-8942-2644AD2C1297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C2F0DBC-0B6D-442A-8942-2644AD2C1297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C2F0DBC-0B6D-442A-8942-2644AD2C1297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C2F0DBC-0B6D-442A-8942-2644AD2C1297}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4934310E-5DF5-46FC-9ECE-7D1147CAA118}
+	EndGlobalSection
+EndGlobal
